@@ -1,0 +1,76 @@
+<!-- https://github.com/Przemocny/zbior-zadan-html-css-js-react/blob/master/CSS%2BHTML/12.isometricCube.css  -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            height: 200vh;
+        }
+
+
+
+        /* .cube {
+            
+        } */
+
+        .wall {
+            height: 250px;
+            width: 250px;
+
+            position: absolute;
+        }
+
+
+        .wall--top {
+            background-color: #aaaaaa;
+            background-image: url('top.png');
+            background-size: cover;
+
+            top: 50px;
+            left: 175px;
+
+            transform: skew(-60deg, 30deg)scale(0.866, 0.5) rotate(-90deg);
+        }
+
+        .wall--left {
+            background-color: #777777;
+            background-image: url('left.png');
+            background-size: cover;
+
+            top: 300px;
+            left: 50px;
+
+            transform: skewY(30deg)scaleX(0.866) translate(19.5px, -72px);
+
+        }
+
+        .wall--right {
+            background-color: #444444;
+            background-image: url('right.png');
+            background-size: cover;
+
+            top: 300px;
+            left: 300px;
+
+            transform: skewY(-30deg)scaleX(0.866) translate(-19.5px, -72px);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cube">
+        <div class="cube__wall">
+            <div class="wall wall--top"></div>
+            <div class="wall wall--left"></div>
+            <div class="wall wall--right"></div>
+        </div>
+    </div>
+</body>
+
+</html>

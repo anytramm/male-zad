@@ -1,0 +1,68 @@
+<!-- https://github.com/Przemocny/zbior-zadan-html-css-js-react/blob/master/JS%2BHTML/14.ProgressReadingBar.js -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        div {
+            height: 240vh;
+        }
+
+        .with-progress-reading-bar{
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="with-progress-reading-bar"></div>
+    <div></div>
+    <div></div>
+    <div class="with-progress-reading-bar"></div>
+    <div></div>
+    <div></div>
+    <div class="with-progress-reading-bar"></div>
+    <div></div>
+
+    <script>
+        const addProgressReadingBar = parentElement => {
+            let progressReadingBar = document.createElement('div');
+            progressReadingBar.style.position = "sticky";
+            progressReadingBar.style.top = 0;
+            progressReadingBar.style.left = 0;
+            progressReadingBar.style.backgroundColor = "blue";
+            progressReadingBar.style.height = "10px";
+            progressReadingBar.style.width = "0px";
+
+            parentElement.appendChild(progressReadingBar);
+        }
+
+        const updateProgressReadingBar = parentElement => {
+            const parentElementPosition= parentElement.offsetTop; //element position: top
+            const parentElementHeight = parentElement.offsetHeight; //element height
+            const parentElementWidth = parentElement.offsetWidth; //element width
+            let windowPosition = window.pageYOffset; //window position: top
+
+            if (parentElementPosition <= windowPosition && (parentElementPosition + parentElementHeight - window.innerHeight) >= windowPosition) {
+                let progressReadingBarWidth = (( windowPosition - parentElementPosition) /  (parentElementHeight - window.innerHeight)) * parentElementWidth;
+                parentElement.firstChild.style.width = `${progressReadingBarWidth}px`;
+            }
+            else if (parentElementPosition <= windowPosition && (parentElementPosition + parentElementHeight) >= windowPosition){
+                parentElement.firstChild.style.width = `${parentElementWidth}px`;
+            }
+            else{
+                parentElement.firstChild.style.width = "0px";
+            }
+        }
+
+        const progressReadingBarDivsList = document.body.querySelectorAll(".with-progress-reading-bar");
+        progressReadingBarDivsList.forEach(element => addProgressReadingBar(element))
+        window.addEventListener('scroll', () => progressReadingBarDivsList.forEach(element => updateProgressReadingBar(element)));
+    </script>
+</body>
+
+</html>
